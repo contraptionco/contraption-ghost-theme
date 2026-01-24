@@ -1,0 +1,41 @@
+{{!< blank}}
+{{!-- This is a special page with no header or footer --}}
+
+{{#post}}
+<html lang="{{@site.locale}}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Check your email - {{@site.title}}</title>
+    <meta name="robots" content="noindex,nofollow">
+
+    {{!-- Styles --}}
+    <link rel="stylesheet" type="text/css" href="{{asset "built/index.css"}}">
+
+    {{!-- Ghost outputs required script tags --}}
+    {{ghost_head}}
+</head>
+<body class="bg-vividBlue text-white dark:text-gray-100 flex items-center justify-center min-h-screen w-full">
+    <div class="container max-w-2xl text-center px-4">
+        <div class="mx-auto">
+            <h1 class="text-4xl lg:text-5xl comp display font-bold">Check your email.</h1>
+            <p class="text-2xl lg:text-2xl display font-medium mt-6">Click the link to finish.</p>
+            <div class="mt-8">
+                <div class="inline-flex items-center text-xl">
+                    <span>Done?</span>
+                    <a href="{{@site.url}}" class="ml-2 underline inline-flex items-center">
+                        <span>Keep reading</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1 w-5 h-5">
+                            <path d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{!-- Ghost outputs required script tags --}}
+    {{ghost_foot}}
+</body>
+</html>
+{{/post}}

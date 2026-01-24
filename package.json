@@ -1,0 +1,101 @@
+{
+    "name": "contraption-ghost-theme",
+    "description": "Contraption Company Ghost Theme",
+    "demo": "https://contraption.co",
+    "version": "1.0.0",
+    "engines": {
+        "ghost": ">=5.0.0"
+    },
+    "license": "MIT",
+    "screenshots": {
+        "desktop": "assets/screenshot-desktop.jpg"
+    },
+    "scripts": {
+        "dev": "concurrently \"rollup -c --environment BUILD:development -w\" \"npx tailwindcss -i ./assets/css/index.css -o ./assets/built/index.css --postcss --watch\" ",
+        "build": "rollup -c --environment BUILD:production && npx tailwindcss -i ./assets/css/index.css -o ./assets/built/index.css --postcss --minify",
+        "zip": "npm run build && bestzip $npm_package_name.zip assets/* partials/* members/* *.hbs package.json",
+        "test": "npx gscan .",
+        "pretest": "npm run build",
+        "lint": "npx gscan .",
+        "prelint": "npm run build"
+    },
+    "author": {
+        "name": "Philip Thomas",
+        "email": "philip@contraption.co",
+        "url": "https://www.philipithomas.com"
+    },
+    "gpm": {
+        "type": "theme",
+        "categories": [
+            "Minimal",
+            "Magazine"
+        ]
+    },
+    "keywords": [
+        "ghost",
+        "theme",
+        "ghost-theme"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/contraptionco/ghost.git"
+    },
+    "bugs": "https://github.com/contraptionco/ghost/issues",
+    "contributors": "https://github.com/contraptionco/ghost/graphs/contributors",
+    "devDependencies": {
+        "@babel/core": "^7.21.0",
+        "@babel/preset-env": "^7.20.2",
+        "@rollup/plugin-babel": "^6.0.3",
+        "@rollup/plugin-commonjs": "^25.0.0",
+        "@rollup/plugin-node-resolve": "^15.0.1",
+        "@rollup/plugin-terser": "^0.4.0",
+        "@tailwindcss/aspect-ratio": "^0.4.2",
+        "@tailwindcss/container-queries": "^0.1.1",
+        "@tailwindcss/forms": "^0.5.7",
+        "@tailwindcss/line-clamp": "^0.4.4",
+        "@tailwindcss/nesting": "^0.0.0-insiders.565cd3e",
+        "@tailwindcss/typography": "^0.5.14",
+        "bestzip": "^2.2.1",
+        "concurrently": "^8.2.2",
+        "postcss": "^8.4.24",
+        "postcss-import": "^15.1.0",
+        "postcss-preset-env": "^8.0.1",
+        "rollup": "^3.18.0",
+        "rollup-plugin-livereload": "^2.0.5",
+        "rollup-plugin-postcss": "^4.0.2",
+        "tailwindcss": "^3.4.9",
+        "tailwindcss-flip": "^1.0.0"
+    },
+    "browserslist": [
+        "defaults"
+    ],
+    "config": {
+        "card_assets": true,
+        "posts_per_page": 24,
+        "image_sizes": {
+            "xxs": {
+                "width": 30
+            },
+            "xs": {
+                "width": 100
+            },
+            "s": {
+                "width": 300
+            },
+            "m": {
+                "width": 600
+            },
+            "l": {
+                "width": 1200
+            },
+            "xl": {
+                "width": 2000
+            }
+        }
+    },
+    "type": "module",
+    "dependencies": {
+        "lucide-react": "^0.475.0",
+        "medium-zoom": "^1.1.0"
+    }
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{asset "built/index.css"}}" />
+
+  <!-- Dark mode setup to prevent flash -->
+  <script>
+    // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+    if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark')
+    }
+  </script>
+
+  <script src="{{asset "built/index.js"}}" defer></script>
+
+  {{!-- Allow templates to override the document title via {{#contentFor "title"}} --}}
+  {{#if (block "title")}}
+    <title>{{{block "title"}}}</title>
+  {{else}}
+    <title>{{meta_title}}</title>
+  {{/if}}
+
+  {{ghost_head}}
+  {{{block "head"}}}
+  {{!-- Outputs important meta data and settings, should always be in
+
+  <head> --}}
+  </head>
+
+<body class="font-sans font-normal antialiased text-gray-900 dark:text-gray-100 scroll-smooth bg-white dark:bg-gray-950 {{body_class}}">
+  {{!-- Content will be inserted here by child templates --}}
+  {{{body}}}
+  {{ghost_foot}}
+</body>
+
+</html>

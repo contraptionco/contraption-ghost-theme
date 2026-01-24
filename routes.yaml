@@ -1,0 +1,19 @@
+routes:
+  /rss/:
+    template: rss
+    content_type: application/rss+xml
+
+collections:
+  /:
+    permalink: /{slug}/
+    template: index
+    filter: 'visibility:public+tag:-workshop'
+
+  /workshop/:
+    permalink: /{slug}/
+    template: collection-workshop
+    filter: 'tag:workshop'
+
+taxonomies:
+  tag: /tag/{slug}/
+  author: /author/{slug}/

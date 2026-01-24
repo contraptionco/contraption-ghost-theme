@@ -1,0 +1,31 @@
+@import "ghost/content";
+@import "helvetica";
+@import "tx-02";
+@import "components";
+@import "prose";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  *::selection {
+    @apply bg-yellow text-black;
+  }
+}
+
+.kg-card {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.kg-card > * {
+  width: 100%;
+  height: auto;
+}

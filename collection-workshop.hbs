@@ -1,0 +1,125 @@
+{{!< app}}
+
+{{#contentFor "title"}}Workshop by Contraption. Co{{/contentFor}}
+{{#contentFor "head"}}
+  <meta property="og:title" content="Workshop by Contraption Co">
+  <meta name="twitter:title" content="Workshop by Contraption Co. - a weekly-ish newsletter about work in progress.">
+{{/contentFor}}
+
+{{!-- Hero section with two-column layout --}}
+<div class="container">
+  <div class="flex flex-col md:flex-row md:gap-8 lg:gap-12 py-8 items-center justify-center" style="min-height: calc(100vh - 88px);">
+    {{!-- Left column: content --}}
+    <div class="w-full md:w-1/2 flex flex-col justify-center text-center md:text-left">
+      <div class="max-w-2xl mx-auto md:mx-0">
+        {{!-- Workshop SVG --}}
+        <a class="flex justify-center md:justify-start mb-8" href="/workshop">
+          <img src="{{asset "images/projects/workshop.svg"}}" alt="Workshop" class="h-12 w-auto dark:hidden">
+          <img src="{{asset "images/projects/workshop-light.svg"}}" alt="Workshop" class="h-12 w-auto hidden dark:block">
+        </a>
+
+        <h1 class="sr-only">Workshop</h1>
+        <div class="mt-4 md:mt-6 lg:mt-8 font-medium text-gray-800 dark:text-gray-200 text-lg sm:text-xl md:text-2xl mb-8 text-pretty max-w-[450px]">
+          Newsletter about work in progress.
+        </div>
+
+        <div class="mt-6" data-workshop-cta data-member-newsletters="{{#if @member}}{{#foreach @member.newsletters}}{{slug}}{{#unless @last}},{{/unless}}{{/foreach}}{{/if}}">
+          {{#if @member}}
+            <div class="flex flex-col sm:flex-row sm:items-center gap-3">
+              <a href="#/portal/account/newsletters" data-action="join-workshop" data-portal="account/newsletters" class="btn btn-primary">
+                <span class="btn-text">Manage subscriptions</span>
+                <span class="btn-arrow" aria-hidden="true">{{> "icons/arrow-right"}}</span>
+              </a>
+              <p data-state="workshop-subscribed" class="hidden text-sm text-gray-600 dark:text-gray-400" aria-hidden="true">
+                You’re already subscribed to Workshop updates.
+              </p>
+            </div>
+          {{else}}
+            <a href="#/portal/signup" data-portal="signup" class="btn btn-primary inline-flex items-center">
+              <span class="font-bold">Subscribe</span>
+              <span class="ml-2">{{> "icons/arrow-right"}}</span>
+            </a>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+
+    {{!-- Right column: image (hidden on mobile) --}}
+    <div class="hidden md:flex md:w-1/2 md:items-center md:justify-center">
+      <div class="relative w-full" style="max-width: 450px; max-height: 600px;">
+        <div class="relative w-full" style="padding-bottom: 133.33%;">
+          <img src="{{asset "images/paris-small.jpg"}}" alt="Laptop and cappuccino at Soho House Paris" class="absolute inset-0 w-full h-full object-cover object-center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  {{!-- Workshop posts grid --}}
+  <div class="mb-16">
+    <h2 class="text-2xl font-semibold mb-8 display">Past posts</h2>
+    {{#if posts}}
+      <div class="gh-postfeed">
+        <div class="flex flex-wrap -mx-4">
+          {{#foreach posts}}
+            <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-10">
+              {{> "card"}}
+            </div>
+          {{/foreach}}
+        </div>
+      </div>
+
+      {{!-- Pagination --}}
+      <div class="gh-pagination flex justify-center mt-8">
+        {{pagination}}
+      </div>
+
+      {{!-- If JS isn't enabled, fallback to standard pagination --}}
+      <noscript>
+        <div class="gh-pagination flex justify-center mt-8">
+          {{pagination}}
+        </div>
+      </noscript>
+    {{else}}
+      <p class="text-gray-600 dark:text-gray-400">No workshop posts yet. Check back soon.</p>
+    {{/if}}
+  </div>
+</div>
+
+{{#if @member}}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var cta = document.querySelector('[data-workshop-cta]');
+  if (!cta) {
+    return;
+  }
+
+  var newsletters = (cta.getAttribute('data-member-newsletters') || '')
+    .split(',')
+    .map(function (slug) {
+      return slug.trim().toLowerCase();
+    })
+    .filter(function (slug) {
+      return slug.length > 0;
+    });
+
+  if (newsletters.indexOf('workshop') === -1) {
+    return;
+  }
+
+  var joinButton = cta.querySelector('[data-action="join-workshop"]');
+  var subscribedMessage = cta.querySelector('[data-state="workshop-subscribed"]');
+
+  if (joinButton) {
+    joinButton.classList.add('hidden');
+    joinButton.setAttribute('aria-hidden', 'true');
+  }
+
+  if (subscribedMessage) {
+    subscribedMessage.classList.remove('hidden');
+    subscribedMessage.removeAttribute('aria-hidden');
+  }
+});
+</script>
+{{/if}}

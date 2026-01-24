@@ -1,0 +1,27 @@
+{{!< app}}
+<div class="gh-page">
+  <div class="container py-8 md:py-12">
+    <div class="gh-postfeed">
+      <h1 class="sr-only">Posts</h1>
+      <div class="flex flex-wrap -mx-4">
+        {{#foreach posts}}
+          <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-10">
+            {{> "card" page=../pagination.page}}
+          </div>
+        {{/foreach}}
+      </div>
+    </div>
+
+    {{!-- Pagination --}}
+    <div class="gh-pagination flex justify-center mt-8">
+      {{pagination}}
+    </div>
+
+    {{!-- If JS isn't enabled, fallback to standard pagination --}}
+    <noscript>
+      <div class="gh-pagination flex justify-center mt-8">
+        {{pagination}}
+      </div>
+    </noscript>
+  </div>
+</div>

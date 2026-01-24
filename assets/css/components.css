@@ -1,0 +1,192 @@
+.container {
+  @apply px-4;
+  @apply sm:px-6;
+  @apply lg:px-8;
+  @apply mx-auto;
+  @apply max-w-7xl;
+}
+
+.link {
+  @apply underline;
+}
+
+#leaflet {
+  height: 100%;
+  width: 100%;
+}
+
+.btn {
+  @apply inline-flex;
+  @apply items-center;
+  @apply justify-center;
+  @apply py-2;
+  @apply px-5;
+  @apply text-sm;
+  @apply font-bold;
+  @apply tracking-tight;
+  @apply focus:outline-none;
+  @apply no-underline;
+  @apply border;
+  @apply border-transparent;
+  @apply shrink-0;
+  @apply relative;
+  @apply transition-all;
+  @apply duration-300;
+  @apply ease-in-out;
+}
+
+.btn-primary {
+  @apply bg-gray-950 dark:bg-gray-100;
+  @apply text-white dark:text-gray-950;
+  @apply border-gray-950 dark:border-gray-100;
+  @apply pl-5;
+  @apply pr-8;
+  @apply hover:shadow-md;
+  @apply h-10;
+}
+
+.btn-primary.loading {
+  @apply bg-brown;
+  @apply border-brown;
+}
+
+.btn-primary .btn-text {
+  @apply transition-transform;
+  @apply duration-300;
+  @apply ease-in-out;
+  @apply text-white dark:text-gray-950;
+  @apply relative;
+  @apply z-10;
+}
+
+.btn-primary .btn-arrow {
+  @apply absolute;
+  @apply right-4;
+  @apply opacity-0;
+  @apply transform;
+  @apply translate-x-2;
+  @apply transition-all;
+  @apply duration-300;
+  @apply ease-in-out;
+  @apply w-4;
+  @apply h-4;
+  @apply z-20;
+  @apply text-white dark:text-gray-950;
+}
+
+.btn-primary .btn-spinner {
+  @apply absolute;
+  @apply right-4;
+  @apply flex;
+  @apply items-center;
+  @apply justify-center;
+  @apply w-4;
+  @apply h-4;
+  @apply z-20;
+  @apply text-white;
+}
+
+.btn-primary:hover .btn-arrow {
+  @apply opacity-100;
+  @apply translate-x-0;
+}
+
+.btn-primary:hover .btn-text {
+  @apply -translate-x-1;
+}
+
+.btn-primary:disabled,
+.btn-primary[disabled] {
+  @apply cursor-default;
+  @apply shadow-none;
+}
+
+.btn-primary.loading:disabled,
+.btn-primary.loading[disabled] {
+  @apply bg-brown;
+  @apply border-brown;
+  @apply opacity-90;
+}
+
+.btn-secondary {
+  @apply bg-gray-100;
+  @apply border-gray-100;
+  @apply border;
+  @apply text-gray-900;
+}
+
+.btn-big {
+  @apply flex;
+  @apply w-full;
+  @apply items-center;
+  @apply justify-center;
+  @apply border;
+  @apply border-transparent;
+  @apply py-3;
+  @apply px-5;
+  @apply text-base;
+  @apply font-medium;
+}
+
+.hover\:accent-underline:hover,
+.has-links a {
+  text-decoration-color: #CFCFCF;
+  @apply text-black;
+  @apply underline;
+  @apply font-medium;
+}
+
+.accent-underline,
+.has-links a {
+  @apply underline;
+  @apply font-medium;
+  text-decoration-color: #CFCFCF;
+}
+
+.breadcrumb {
+  @apply text-xs;
+  @apply uppercase;
+  @apply text-gray-800 !important;
+  @apply no-underline !important;
+  @apply font-bold !important;
+  @apply tracking-wider !important;
+}
+
+a.breadcrumb {
+  @apply hover:underline !important;
+}
+
+.footnotes {
+  @apply text-sm;
+  @apply text-gray-800;
+  @apply dark:text-gray-200;
+  @apply mt-4;
+}
+
+.h-captcha {
+  margin: 0 auto;
+}
+
+.loading .default-state {
+  @apply !block;
+}
+
+/* Subscription form styles */
+[data-members-error]:not(.hidden) {
+  @apply block;
+  @apply text-red;
+}
+
+[data-members-success]:not(.hidden) {
+  @apply block;
+  @apply text-green;
+}
+
+/* Ghost search styling for dark mode */
+.gh-search-icon {
+  @apply text-gray-800 dark:text-gray-200 !important;
+}
+
+.compact {
+  @apply comp;
+}

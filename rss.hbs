@@ -26,7 +26,7 @@
     {{/if}}
 
     {{!-- All published posts; Content API applies gating so paid/members-only posts only expose their public preview --}}
-    {{#get "posts" filter="status:published" include="authors,tags" order="published_at desc" limit="all"}}
+    {{#get "posts" filter="status:published" include="authors,tags" order="published_at desc" limit="50"}}
       {{#if posts.[0]}}
       <lastBuildDate>{{date posts.[0].published_at format="ddd, DD MMM YYYY HH:mm:ss ZZ"}}</lastBuildDate>
       {{/if}}

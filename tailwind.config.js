@@ -87,42 +87,49 @@ export default {
   theme: {
     colors: {
       transparent: "transparent",
-      white: "#ffffff",
-      black: "#000000",
-      yellow: "#fee53f",
-      blue: "#54759e",
-      vividBlue: "#0056ac",
-      red: "#ff0c5b",
-      white: "#ffffff",
-      green: "#2c6153",
-      brown: "#6a525a",
+      // Hygge: warm off-white instead of pure white
+      white: "#FAF9F7",
+      // Hygge: warm charcoal instead of pure black  
+      black: "#1C1917",
+      // Muted hygge accent colors
+      yellow: "#D4A84B",      // soft gold
+      blue: "#5B7B8A",        // warm blue
+      vividBlue: "#4A6B7C",   // muted blue
+      red: "#C4746E",         // terracotta red
+      green: "#4A5D4A",       // forest green
+      brown: "#8B7355",       // warm brown
+      // Warm stone-based gray palette (hygge)
       gray: {
-        "050": "#F7F7F7",
-        "075": "#ECECEC",
-        100: "#E1E1E1",
-        200: "#CFCFCF",
-        300: "#B1B1B1",
-        400: "#9E9E9E",
-        500: "#7E7E7E",
-        600: "#626262",
-        700: "#515151",
-        800: "#3B3B3B",
-        850: "#2F2F2F",
-        900: "#222222",
-        925: "#1A1A1A",
-        950: "#111111",
-        975: "#090909",
+        "050": "#FAFAF9",     // warm off-white
+        "075": "#F5F5F4",     // cream
+        100: "#E7E5E4",       // light stone
+        200: "#D6D3D1",       // stone 200
+        300: "#A8A29E",       // stone 300
+        400: "#78716C",       // stone 400
+        500: "#57534E",       // stone 500
+        600: "#44403C",       // stone 600
+        700: "#363230",       // warm dark
+        800: "#292524",       // stone 800
+        850: "#231F1E",       // warm charcoal
+        900: "#1C1917",       // stone 900
+        925: "#171412",       // deep warm
+        950: "#0F0D0C",       // near black warm
+        975: "#0A0908",       // deepest warm
       },
     },
     extend: {
       fontFamily: {
+        // Hygge font: Untitled Sans from Klim Type Foundry
+        // Install the font files and update the name if using a different font
+        // Alternatives: "Nationale" (Playtype), "FF Meta", "Lyon Text"
         sans: [
-          '"Helvetica Now Variable"',
+          '"Untitled Sans"',
           '"Helvetica Neue"',
           "Helvetica",
           ...defaultTheme.fontFamily.sans,
         ],
         mono: [
+          '"Berkeley Mono"',
           '"TX-02-Data"',
           '"Roboto Mono"',
           ...defaultTheme.fontFamily.mono,

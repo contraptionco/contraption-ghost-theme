@@ -23,24 +23,14 @@
           Newsletter about work in progress.
         </div>
 
-        <div class="mt-6" data-workshop-cta data-member-newsletters="{{#if @member}}{{#foreach @member.newsletters}}{{slug}}{{#unless @last}},{{/unless}}{{/foreach}}{{/if}}">
-          {{#if @member}}
-            <div class="flex flex-col sm:flex-row sm:items-center gap-3">
-              <a href="#/portal/account/newsletters" data-action="join-workshop" data-portal="account/newsletters" class="btn btn-primary">
-                <span class="btn-text">Manage subscriptions</span>
-                <span class="btn-arrow" aria-hidden="true">{{> "icons/arrow-right"}}</span>
-              </a>
-              <p data-state="workshop-subscribed" class="hidden text-sm text-gray-600 dark:text-gray-400" aria-hidden="true">
-                You’re already subscribed to Workshop updates.
-              </p>
-            </div>
-          {{else}}
+        {{#unless @member}}
+        <div class="mt-6">
             <a href="#/portal/signup" data-portal="signup" class="btn btn-primary inline-flex items-center">
               <span class="font-bold">Subscribe</span>
               <span class="ml-2">{{> "icons/arrow-right"}}</span>
             </a>
-          {{/if}}
         </div>
+        {{/unless}}
       </div>
     </div>
 
@@ -87,39 +77,3 @@
   </div>
 </div>
 
-{{#if @member}}
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  var cta = document.querySelector('[data-workshop-cta]');
-  if (!cta) {
-    return;
-  }
-
-  var newsletters = (cta.getAttribute('data-member-newsletters') || '')
-    .split(',')
-    .map(function (slug) {
-      return slug.trim().toLowerCase();
-    })
-    .filter(function (slug) {
-      return slug.length > 0;
-    });
-
-  if (newsletters.indexOf('workshop') === -1) {
-    return;
-  }
-
-  var joinButton = cta.querySelector('[data-action="join-workshop"]');
-  var subscribedMessage = cta.querySelector('[data-state="workshop-subscribed"]');
-
-  if (joinButton) {
-    joinButton.classList.add('hidden');
-    joinButton.setAttribute('aria-hidden', 'true');
-  }
-
-  if (subscribedMessage) {
-    subscribedMessage.classList.remove('hidden');
-    subscribedMessage.removeAttribute('aria-hidden');
-  }
-});
-</script>
-{{/if}}

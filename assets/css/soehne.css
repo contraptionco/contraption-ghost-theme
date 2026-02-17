@@ -33,21 +33,3 @@
   font-style: italic;
   font-display: block;
 }
-
-@font-face {
-  font-family: 'Soehne Mono';
-  src: url('https://fonts.contraption.co/Sohne/sohne-mono-buch.woff2')
-    format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: block;
-}
-
-@font-face {
-  font-family: 'Soehne Mono';
-  src: url('https://fonts.contraption.co/Sohne/sohne-mono-halbfett.woff2')
-    format('woff2');
-  font-weight: 600;
-  font-style: normal;
-  font-display: block;
-}

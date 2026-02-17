@@ -1,37 +1,49 @@
 {{!< app}}
 
-<main class="gh-main flex items-center justify-center container" style="min-height: 80vh;">
+{{#contentFor "viewportClass"}}bg-gray-950{{/contentFor}}
+{{#contentFor "head"}}
+<style>
+  /* Invert nav for dark error page */
+  .gh-viewport.bg-gray-950 header nav img:not(.rounded-full) { filter: invert(1); }
+  .gh-viewport.bg-gray-950 header nav a { color: #B1ADA6; }
+  .gh-viewport.bg-gray-950 header nav a:hover { color: #fff; }
+  .gh-viewport.bg-gray-950 header nav .btn-primary { background: #fff; border-color: #fff; color: #111110; }
+  .gh-viewport.bg-gray-950 header nav .btn-primary .btn-text { color: #111110; }
+  .gh-viewport.bg-gray-950 header nav .btn-primary .btn-arrow { color: #111110; }
+  .gh-viewport.bg-gray-950 .gh-search-icon { color: #B1ADA6 !important; }
+  /* Hide footer border since it blends */
+  .gh-viewport.bg-gray-950 footer { margin-top: 0; }
+</style>
+{{/contentFor}}
 
-    <section class="gh-page gh-error prose prose-xl text-center">
-        <div class="gh-container">
+<div class="flex items-center justify-center" style="min-height: calc(100vh - 88px);">
+  <div class="max-w-xl text-center px-4">
+    <h1 class="font-sans text-4xl lg:text-5xl font-semibold tracking-tight text-white">{{statusCode}}</h1>
+    <p class="font-serif text-xl text-white/60 mt-6 leading-relaxed">{{message}}.</p>
+    <div class="mt-10">
+      <a href="{{@site.url}}" class="no-underline font-mono text-xs font-semibold tracking-[0.12em] uppercase text-white/60 hover:text-white transition-colors duration-300 inline-flex items-center">
+        <span>Back to home</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2">
+          <path d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+        </svg>
+      </a>
+    </div>
 
-            <section class="gh-error-content">
-
-                <h1 class="gh-error-code">{{statusCode}}</h1>
-                <p class="gh-error-description">{{message}}</p>
-                <p class="gh-error-link"><a href="{{@site.url}}">Go to the front page →</a></p>
-
-                {{#if errorDetails}}
-                <section class="gh-error-stack">
-                    <h4>Theme errors:</h4>
-                    <ul class="gh-error-stack-list">
-                        {{#foreach errorDetails}}
-                        <li>
-                            <h5 class="gh-error-stack-function">{{{rule}}}</h5>
-
-                            {{#foreach failures}}
-                            <span class="gh-error-stack-file"><strong>Ref:</strong> {{ref}}</span><br>
-                            <span class="gh-error-stack-file"><strong>Message:</strong> {{message}}</span>
-                            {{/foreach}}
-                        </li>
-                        {{/foreach}}
-                    </ul>
-                </section>
-                {{/if}}
-
-            </section>
-
-        </div>
-    </section>
-
-</main>
+    {{#if errorDetails}}
+    <div class="mt-12 text-left max-w-xl mx-auto">
+      <h4 class="font-mono text-xs text-white/40 mb-4">Theme errors:</h4>
+      <ul class="space-y-3">
+        {{#foreach errorDetails}}
+        <li class="text-sm text-white/40">
+          <h5 class="font-mono text-xs text-white/60">{{{rule}}}</h5>
+          {{#foreach failures}}
+          <span class="text-white/40">Ref: {{ref}}</span><br>
+          <span class="text-white/40">{{message}}</span>
+          {{/foreach}}
+        </li>
+        {{/foreach}}
+      </ul>
+    </div>
+    {{/if}}
+  </div>
+</div>

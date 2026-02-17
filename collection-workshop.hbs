@@ -5,15 +5,16 @@
   <meta property="og:title" content="Workshop by Contraption Co">
   <meta name="twitter:title" content="Workshop by Contraption Co. — Notes on work in progress.">
 {{/contentFor}}
+{{#contentFor "viewportClass"}}bg-offwhite-warm{{/contentFor}}
 
-{{!-- Dark band --}}
-<div class="bg-gray-950 py-10 md:py-14">
+{{!-- Header band --}}
+<div class="bg-gray-850 py-10 md:py-14">
   <div class="container text-center">
-    <img src="{{asset "images/projects/workshop.svg"}}" alt="Workshop" class="h-10 md:h-12 w-auto mx-auto invert">
+    <img src="{{asset "images/projects/workshop.svg"}}" alt="Workshop" class="h-10 md:h-12 w-auto mx-auto workshop-logo-light">
     <h1 class="sr-only">Workshop</h1>
     <p class="font-serif text-gray-400 text-lg mt-3">Notes on work in progress.</p>
     {{#unless @member}}
-    <a href="#/portal/signup" data-portal="signup" class="inline-block mt-5 font-sans text-xs font-medium tracking-[0.1em] uppercase text-gray-400 underline underline-offset-4 decoration-gray-700 hover:text-white hover:decoration-white transition-colors duration-300">
+    <a href="#/portal/signup" data-portal="signup" class="inline-block mt-5 font-sans text-xs font-medium tracking-[0.1em] uppercase text-gray-400 underline underline-offset-4 decoration-gray-600 hover:text-white hover:decoration-white transition-colors duration-300">
       Subscribe
     </a>
     {{/unless}}
@@ -23,7 +24,6 @@
 <div class="container pt-10 md:pt-14">
   {{!-- Workshop posts grid --}}
   <div class="mb-16">
-    <h2 class="font-sans text-xs font-semibold tracking-[0.15em] uppercase text-gray-500 mb-8">Past posts</h2>
     {{#if posts}}
       <div class="gh-postfeed">
         <div class="flex flex-wrap -mx-4">

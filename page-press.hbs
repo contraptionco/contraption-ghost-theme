@@ -4,47 +4,56 @@
 {{#contentFor "head"}}
   <meta property="og:title" content="Get posts in the mail | Contraption">
 {{/contentFor}}
-{{#contentFor "viewportClass"}}bg-[#F5F6FA]{{/contentFor}}
+{{#contentFor "viewportClass"}}bg-offwhite-cool{{/contentFor}}
 
 <div class="container">
     <div class="flex flex-col md:flex-row md:gap-8 lg:gap-12 py-8 items-center justify-center" style="min-height: calc(100vh - 88px);">
       <div class="w-full md:w-1/2 flex flex-col justify-center text-center md:text-left">
         <div class="max-w-2xl mx-auto md:mx-0">
-          <h1 class="font-sans text-4xl sm:text-5xl font-bold text-gray-950 leading-tight text-pretty">
-            {{#if @member.paid}}Thank you{{else}}Print edition{{/if}}
+          <h1 class="font-sans text-4xl sm:text-5xl font-semibold tracking-tight text-gray-950 leading-tight text-pretty">
+            Print edition
           </h1>
-          {{#unless @member.paid}}
-            <div class="mt-4 md:mt-6 lg:mt-8 font-serif text-gray-600 text-lg sm:text-xl md:text-2xl text-pretty leading-relaxed">
-              Get every new Contraption essay printed and mailed to you. Read each right away, or collect a stack for later screen-free perusing.
-            </div>
-          {{/unless}}
+          {{#if @member.paid}}
+            <p class="mt-4 md:mt-6 font-serif text-gray-600 text-lg sm:text-xl leading-relaxed text-pretty">
+              New essays are printed and mailed as they are published. Allow about one week for USA delivery, two weeks globally.
+            </p>
 
-          <div class="mt-8 space-y-6">
-            {{#if @member.paid}}
-              <div class="space-y-4 text-left text-lg text-gray-700 leading-relaxed">
-                <p>
-                  I will mail you new posts as they are published. Delivery takes about one week in the USA, and two weeks globally.
-                  <span>Claim free Postcard premium with the code:</span>
-                  <span class="inline-flex items-center px-2.5 py-1 bg-white border border-gray-200 text-gray-900 font-mono text-sm">ESPRESSO</span>
-                </p>
-                <p>
-                  Any questions? Email me at
-                  <a href="mailto:philip@contraption.co" class="underline decoration-gray-400 hover:text-gray-900 transition-colors duration-300">philip@contraption.co</a>
-                </p>
-                <div class="flex flex-wrap gap-3 pt-2">
-                  <a href="https://billing.stripe.com/p/login/00w4gB7P21zn0qVae19oc00" class="btn bg-indigo text-white border-indigo hover:bg-indigo-dark pl-5 pr-8 h-10" data-prefill-param="prefilled_email" {{#if @member.email}}data-member-email="{{@member.email}}"{{/if}}>
-                    <span class="btn-text">Billing &amp; shipping</span>
-                    <span class="btn-arrow">{{> "icons/arrow-right"}}</span>
-                  </a>
+            <div class="mt-8 space-y-6">
+              <div class="border-t border-gray-200 pt-6 space-y-4">
+                <div>
+                  <h2 class="font-sans text-xs font-semibold tracking-[0.15em] uppercase text-gray-500 mb-2">Subscriber perk</h2>
+                  <p class="font-serif text-base text-gray-700 leading-relaxed">
+                    Free Postcard premium — use code
+                    <span class="inline-flex items-center px-2 py-0.5 bg-white border border-gray-200 text-gray-900 font-mono text-xs tracking-wide">ESPRESSO</span>
+                  </p>
+                </div>
+                <div class="pt-2">
+                  <h2 class="font-sans text-xs font-semibold tracking-[0.15em] uppercase text-gray-500 mb-2">Support</h2>
+                  <p class="font-serif text-base text-gray-700 leading-relaxed">
+                    <a href="mailto:philip@contraption.co" class="underline decoration-gray-400 hover:text-gray-900 transition-colors duration-300">philip@contraption.co</a>
+                  </p>
                 </div>
               </div>
-            {{else}}
+
+              <div class="flex flex-wrap gap-3">
+                <a href="https://billing.stripe.com/p/login/00w4gB7P21zn0qVae19oc00" class="btn btn-primary" data-prefill-param="prefilled_email" {{#if @member.email}}data-member-email="{{@member.email}}"{{/if}}>
+                  <span class="btn-text">Billing &amp; shipping</span>
+                  <span class="btn-arrow">{{> "icons/arrow-right"}}</span>
+                </a>
+              </div>
+            </div>
+          {{else}}
+            <p class="mt-4 md:mt-6 lg:mt-8 font-serif text-gray-600 text-lg sm:text-xl md:text-2xl text-pretty leading-relaxed">
+              Get every new Contraption essay printed and mailed to you. Read each right away, or collect a stack for later screen-free perusing.
+            </p>
+
+          <div class="mt-8 space-y-6">
               <div class="grid gap-3 sm:flex sm:flex-wrap">
-                <a href="https://buy.stripe.com/00w4gB7P21zn0qVae19oc00" class="btn bg-indigo text-white border-indigo hover:bg-indigo-dark pl-5 pr-8 h-10 w-full sm:w-auto" data-prefill-param="locked_prefilled_email" {{#if @member}}data-member-email="{{@member.email}}"{{/if}}>
+                <a href="https://buy.stripe.com/00w4gB7P21zn0qVae19oc00" class="btn btn-primary w-full sm:w-auto" data-prefill-param="locked_prefilled_email" {{#if @member}}data-member-email="{{@member.email}}"{{/if}}>
                   <span class="btn-text">$15/mo USA delivery</span>
                   <span class="btn-arrow">{{> "icons/arrow-right"}}</span>
                 </a>
-                <a href="https://buy.stripe.com/8x26oJedqb9X6Pjfyl9oc01" class="btn bg-indigo text-white border-indigo hover:bg-indigo-dark pl-5 pr-8 h-10 w-full sm:w-auto" data-prefill-param="locked_prefilled_email" {{#if @member}}data-member-email="{{@member.email}}"{{/if}}>
+                <a href="https://buy.stripe.com/8x26oJedqb9X6Pjfyl9oc01" class="btn btn-primary w-full sm:w-auto" data-prefill-param="locked_prefilled_email" {{#if @member}}data-member-email="{{@member.email}}"{{/if}}>
                   <span class="btn-text">$20/mo global</span>
                   <span class="btn-arrow">{{> "icons/arrow-right"}}</span>
                 </a>

@@ -36,6 +36,8 @@ export default {
         DEFAULT: "#F5F3F0",
         light: "#FAF9F7",
         dark: "#EDEBE7",
+        warm: "#F6F4F1",
+        cool: "#F5F6FA",
       },
       gray: {
         "050": "#F7F6F4",
@@ -69,7 +71,7 @@ export default {
           ...defaultTheme.fontFamily.serif,
         ],
         mono: [
-          '"TX-02-Data"',
+          '"Soehne Mono"',
           '"Roboto Mono"',
           ...defaultTheme.fontFamily.mono,
         ],

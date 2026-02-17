@@ -1,0 +1,20 @@
+{{!-- Subtle subscribe CTA for non-members --}}
+{{#unless @member}}
+<div class="mx-auto max-w-2xl border-t border-gray-200 pt-8 reveal">
+  <p class="font-serif text-gray-600 text-lg mb-5">Get new essays by email.</p>
+  <form data-members-form="subscribe" class="flex flex-col items-start">
+    <div class="flex items-center w-full sm:w-2/3">
+      <input data-members-email type="email" placeholder="Your email"
+        class="border border-gray-300 bg-white px-3 py-2 flex-grow outline-none focus:outline-none w-full focus:ring-0 focus:border-gray-900 text-sm h-9"
+        required>
+      <button type="submit" class="bg-gray-950 text-white px-4 h-9 font-sans text-xs font-medium tracking-wide uppercase whitespace-nowrap hover:bg-gray-800 transition-colors duration-300" data-loading-text="...">
+        Subscribe
+      </button>
+    </div>
+    <div class="mt-2">
+      <p data-members-error class="text-red text-xs hidden"></p>
+      <p data-members-success class="text-forest text-xs hidden">Check your inbox for a confirmation link.</p>
+    </div>
+  </form>
+</div>
+{{/unless}}

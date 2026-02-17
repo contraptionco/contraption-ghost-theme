@@ -22,8 +22,8 @@
   @apply py-2;
   @apply px-5;
   @apply text-sm;
-  @apply font-bold;
-  @apply tracking-tight;
+  @apply font-semibold;
+  @apply tracking-normal;
   @apply focus:outline-none;
   @apply no-underline;
   @apply border;
@@ -194,6 +194,26 @@ a.breadcrumb {
 [data-members-success]:not(.hidden) {
   @apply block;
   @apply text-forest;
+}
+
+/* Workshop logo — CSS filters from black SVG source */
+.workshop-logo {
+  transition: filter 0.3s ease;
+}
+.workshop-logo:hover,
+.group:hover .workshop-logo {
+  filter: invert(30%) sepia(30%) saturate(700%) hue-rotate(345deg) brightness(85%);
+}
+/* Slightly warm white for dark backgrounds */
+.workshop-logo-light {
+  filter: invert(90%) sepia(5%) saturate(200%) hue-rotate(345deg) brightness(110%);
+}
+/* Trivet logo — forest green on hover */
+.trivet-logo {
+  transition: filter 0.3s ease;
+}
+.group:hover .trivet-logo {
+  filter: invert(25%) sepia(40%) saturate(600%) hue-rotate(115deg) brightness(90%);
 }
 
 /* Ghost search styling */

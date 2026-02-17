@@ -5,7 +5,7 @@ Re-usable card for linking to posts
 
   <!-- Header -->
   <div class="container">
-    <div class="flex flex-col items-center text-gray-950 text-center mx-auto" style="max-width: 90%;">
+    <div class="flex flex-col items-center text-gray-950 text-center mx-auto max-w-3xl">
       {{#is "post"}}
       <!-- date -->
       <time datetime="{{date format="YYYY-MM-DD"}}"
@@ -37,7 +37,7 @@ Re-usable card for linking to posts
           {{else}}
           <div class="gh-author-icon">{{> icons/avatar}}</div>
           {{/if}}
-          <span class="font-serif text-base text-gray-600 group-hover:text-forest transition-colors duration-300">{{name}}</span>
+          <span class="font-sans text-sm font-medium text-gray-600 group-hover:text-forest transition-colors duration-300">{{name}}</span>
         </a>
         {{/foreach}}
       </div>
@@ -67,7 +67,7 @@ Re-usable card for linking to posts
           feature_image size="s"}} 300w, {{img_url feature_image size="m"}} 600w, {{img_url feature_image size="l"}}
           1200w, {{img_url feature_image size="xl"}} 2000w" {{^if @first}}sizes="(min-width: 1200px) 1200px, 100vw)"
           {{else}}sizes="(min-width: 800px) 100vw, 700px" {{/if}} src="{{img_url feature_image size="m"}}"
-          alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}" class="w-full h-full object-cover" {{^if
+          alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}" class="cover w-full h-full object-cover" {{^if
           @first}}loading="lazy" {{/if}}>
       </picture>
     </div>

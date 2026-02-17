@@ -28,7 +28,7 @@ async function getNextPage(url) {
     }
 }
 
-export default function infiniteScroll() {
+export default function infiniteScroll(onAppend) {
 
     let link = document.querySelector('link[rel="next"]')?.getAttribute('href');
     const feed = document.querySelector('.gh-postfeed .flex');
@@ -71,9 +71,14 @@ export default function infiniteScroll() {
 
                             // Apply mediumZoom to new content
                             mediumZoom('.prose img, .cover', {
-                                background: '#111111',
+                                background: '#0A0A0A',
                                 margin: 0
                             });
+
+                            // Run callback after appending new content
+                            if (typeof onAppend === 'function') {
+                                onAppend();
+                            }
 
                             if (nextLink) {
                                 link = nextLink;

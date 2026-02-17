@@ -4,56 +4,41 @@
 import infiniteScroll from "./infiniteScroll";
 import mediumZoom from "medium-zoom";
 
-// Dark mode functionality
-function setupDarkMode() {
-  const themeToggleBtn = document.getElementById('theme-toggle');
-  const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-  const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+// Scroll reveal animation
+function setupScrollReveal() {
+  const reveals = document.querySelectorAll('.reveal');
+  if (!reveals.length) return;
 
-  // Change the icons inside the button based on previous settings
-  if (localStorage.getItem('color-theme') === 'dark' || 
-      (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-    document.documentElement.classList.add('dark');
-    themeToggleLightIcon.classList.remove('hidden');
-  } else {
-    document.documentElement.classList.remove('dark');
-    themeToggleDarkIcon.classList.remove('hidden');
-  }
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry, index) {
+      if (entry.isIntersecting) {
+        // Stagger timing based on element position
+        const delay = Array.from(reveals).indexOf(entry.target) % 3 * 100;
+        setTimeout(function() {
+          entry.target.classList.add('revealed');
+        }, delay);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -40px 0px'
+  });
 
-  themeToggleBtn.addEventListener('click', function() {
-    // Toggle icons
-    themeToggleDarkIcon.classList.toggle('hidden');
-    themeToggleLightIcon.classList.toggle('hidden');
-    
-    // Toggle dark mode class
-    if (localStorage.getItem('color-theme')) {
-      if (localStorage.getItem('color-theme') === 'light') {
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('color-theme', 'dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-        localStorage.setItem('color-theme', 'light');
-      }
-    } else {
-      if (document.documentElement.classList.contains('dark')) {
-        document.documentElement.classList.remove('dark');
-        localStorage.setItem('color-theme', 'light');
-      } else {
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('color-theme', 'dark');
-      }
-    }
+  reveals.forEach(function(el) {
+    observer.observe(el);
   });
 }
 
 // Hide pagination when JS is enabled (since we're using infinite scroll)
 document.addEventListener('DOMContentLoaded', function() {
-  // Set up dark mode based on browser preference
-  setupDarkMode();
   const pagination = document.querySelector('.gh-pagination:not(noscript .gh-pagination)');
   if (pagination) {
     pagination.style.display = 'none';
   }
+
+  // Set up scroll reveal
+  setupScrollReveal();
 
   // Handle subscription form
   const subscribeForm = document.querySelector('form[data-members-form="subscribe"]');
@@ -133,9 +118,12 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Call the menu and infinite scroll functions
-infiniteScroll();
+infiniteScroll(function() {
+  // Re-run scroll reveal after infinite scroll appends new cards
+  setupScrollReveal();
+});
 
 mediumZoom('.prose img, .cover', {
-  background: '#111111',
+  background: '#0A0A0A',
   margin: 0
 })

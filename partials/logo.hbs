@@ -2,25 +2,19 @@
   {{#post}}
     {{#has tag="workshop"}}
       <a href="/workshop/">
-        <img src="{{asset "images/logo/workshop-by-contraption.svg"}}" class="w-auto h-8 md:h-10 dark:hidden"
-          alt="Workshop by Contraption" />
-        <img src="{{asset "images/logo/workshop-by-contraption-light.svg"}}" class="w-auto h-8 md:h-10 hidden dark:block"
+        <img src="{{asset "images/logo/workshop-by-contraption.svg"}}" class="w-auto h-8 md:h-10"
           alt="Workshop by Contraption" />
       </a>
     {{else}}
       <a href="/">
-        <img src="{{asset "images/logo/wordmark.svg"}}" class="w-auto h-6 fill-current text-gray-950 fill-gray-950 md:h-6 dark:hidden"
-          alt="{{@site.title}}" />
-        <img src="{{asset "images/logo/wordmark-light.svg"}}" class="w-auto h-6 fill-current text-gray-050 fill-gray-050 md:h-6 hidden dark:block"
+        <img src="{{asset "images/logo/wordmark.svg"}}" class="w-auto h-6 fill-current text-gray-950 fill-gray-950 md:h-6"
           alt="{{@site.title}}" />
       </a>
     {{/has}}
   {{/post}}
 {{else}}
   <a href="/">
-    <img src="{{asset "images/logo/wordmark.svg"}}" class="w-auto h-6 fill-current text-gray-950 fill-gray-950 md:h-6 dark:hidden"
-      alt="{{@site.title}}" />
-    <img src="{{asset "images/logo/wordmark-light.svg"}}" class="w-auto h-6 fill-current text-gray-050 fill-gray-050 md:h-6 hidden dark:block"
+    <img src="{{asset "images/logo/wordmark.svg"}}" class="w-auto h-6 fill-current text-gray-950 fill-gray-950 md:h-6"
       alt="{{@site.title}}" />
   </a>
 {{/is}}

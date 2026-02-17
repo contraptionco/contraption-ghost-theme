@@ -1,126 +1,72 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
-const plugin = require("tailwindcss/plugin");
-
-/*
-adds classes for controlling font width and optical size
-
-width: .comp = compact, .cond = condensed
-optical size: .micro = micro, .display = display
-
-Details: https://www.monotype.com/fonts/helvetica-now-variable
-*/
-const fontVariationSettingsPlugin = plugin(function ({ addUtilities }) {
-  const weights = [
-    { name: "thin", value: 100 },
-    { name: "extralight", value: 200 },
-    { name: "light", value: 300 },
-    { name: "normal", value: 400 },
-    { name: "medium", value: 500 },
-    { name: "semibold", value: 600 },
-    { name: "bold", value: 700 },
-    { name: "extrabold", value: 800 },
-    { name: "black", value: 900 },
-  ];
-
-  const opszSettings = [
-    { name: "text", value: 12 },
-    { name: "display", value: 30 },
-    { name: "micro", value: 4 },
-  ];
-
-  const utilities = {};
-
-  weights.forEach(({ name, value }) => {
-    opszSettings.forEach(({ name: opszName, value: opszValue }) => {
-      utilities[`.font-${name}.${opszName}`] = {
-        fontWeight: value,
-        fontVariationSettings:
-          `"wght" ${value}, "opsz" ${opszValue}, "wdth" 100`,
-      };
-      utilities[`.font-${name}.${opszName}.italic`] = {
-        fontVariationSettings:
-          `"slnt" 1, "wght" ${value}, "opsz" ${opszValue}, "wdth" 100`,
-      };
-      utilities[`.font-${name}.${opszName}.comp`] = {
-        fontVariationSettings:
-          `"wght" ${value}, "opsz" ${opszValue}, "wdth" 75`,
-      };
-      utilities[`.font-${name}.${opszName}.cond`] = {
-        fontVariationSettings:
-          `"wght" ${value}, "opsz" ${opszValue}, "wdth" 50`,
-      };
-    });
-
-    utilities[`.font-${name}`] = {
-      fontWeight: value,
-      fontVariationSettings: `"wght" ${value}, "opsz" 12, "wdth" 100`,
-    };
-    utilities[`.font-${name}.italic`] = {
-      fontVariationSettings: `"slnt" 1, "wght" ${value}, "opsz" 12, "wdth" 100`,
-    };
-    utilities[`.font-${name}.comp`] = {
-      fontVariationSettings: `"wght" ${value}, "opsz" 12, "wdth" 75`,
-    };
-    utilities[`.font-${name}.cond`] = {
-      fontVariationSettings: `"wght" ${value}, "opsz" 12, "wdth" 50`,
-    };
-  });
-
-  utilities[".italic"] = {
-    fontStyle: "italic",
-    fontVariationSettings: '"slnt" 1, "opsz" 12, "wdth" 100',
-  };
-  utilities[".comp"] = {
-    fontVariationSettings: '"wdth" 75',
-  };
-  utilities[".cond"] = {
-    fontVariationSettings: '"wdth" 50',
-  };
-
-  addUtilities(utilities);
-});
 
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./*.hbs", "./**/*.hbs"],
-  darkMode: 'class',
   theme: {
     colors: {
       transparent: "transparent",
       white: "#ffffff",
-      black: "#000000",
+      black: "#0A0A0A",
       yellow: "#fee53f",
       blue: "#54759e",
       vividBlue: "#0056ac",
-      red: "#ff0c5b",
-      white: "#ffffff",
-      green: "#2c6153",
-      brown: "#6a525a",
+      red: {
+        DEFAULT: "#C43E2A",
+        light: "#D4573F",
+        dark: "#9A3020",
+      },
+      forest: {
+        DEFAULT: "#2B4A3E",
+        light: "#3D6B5A",
+        dark: "#1E3630",
+      },
+      indigo: {
+        DEFAULT: "#2C3E6B",
+        light: "#3F5A94",
+        dark: "#1E2A4A",
+      },
+      walnut: {
+        DEFAULT: "#6B4D3A",
+        light: "#8B6B52",
+        dark: "#4A3628",
+      },
+      brass: "#B8956A",
+      offwhite: {
+        DEFAULT: "#F5F3F0",
+        light: "#FAF9F7",
+        dark: "#EDEBE7",
+      },
       gray: {
-        "050": "#F7F7F7",
-        "075": "#ECECEC",
-        100: "#E1E1E1",
-        200: "#CFCFCF",
-        300: "#B1B1B1",
-        400: "#9E9E9E",
-        500: "#7E7E7E",
-        600: "#626262",
-        700: "#515151",
-        800: "#3B3B3B",
-        850: "#2F2F2F",
-        900: "#222222",
-        925: "#1A1A1A",
-        950: "#111111",
-        975: "#090909",
+        "050": "#F7F6F4",
+        "075": "#ECEAE6",
+        100: "#E0DDD8",
+        200: "#CFCBC4",
+        300: "#B1ADA6",
+        400: "#9E9A93",
+        500: "#7E7A73",
+        600: "#625E58",
+        700: "#514D48",
+        800: "#3B3834",
+        850: "#2F2C28",
+        900: "#222120",
+        925: "#1A1918",
+        950: "#111110",
+        975: "#090908",
       },
     },
     extend: {
       fontFamily: {
         sans: [
-          '"Helvetica Now Variable"',
+          '"Soehne"',
           '"Helvetica Neue"',
           "Helvetica",
           ...defaultTheme.fontFamily.sans,
+        ],
+        serif: [
+          '"Tiempos Text"',
+          "Georgia",
+          ...defaultTheme.fontFamily.serif,
         ],
         mono: [
           '"TX-02-Data"',
@@ -132,6 +78,7 @@ export default {
         DEFAULT: {
           css: {
             color: theme("colors.gray.900"),
+            fontFamily: '"Tiempos Text", Georgia, serif',
             'ol[type="A"]': false,
             'ol[type="a"]': false,
             'ol[type="A" s]': false,
@@ -147,11 +94,28 @@ export default {
             "code::after": {
               content: '""',
             },
-          },
-        },
-        invert: {
-          css: {
-            color: theme("colors.gray.100"),
+            h1: {
+              fontFamily: '"Soehne", "Helvetica Neue", Helvetica, sans-serif',
+              letterSpacing: "-0.02em",
+            },
+            h2: {
+              fontFamily: '"Soehne", "Helvetica Neue", Helvetica, sans-serif',
+              letterSpacing: "-0.02em",
+            },
+            h3: {
+              fontFamily: '"Soehne", "Helvetica Neue", Helvetica, sans-serif',
+              letterSpacing: "-0.02em",
+            },
+            h4: {
+              fontFamily: '"Soehne", "Helvetica Neue", Helvetica, sans-serif',
+              letterSpacing: "-0.02em",
+            },
+            h5: {
+              fontFamily: '"Soehne", "Helvetica Neue", Helvetica, sans-serif',
+            },
+            h6: {
+              fontFamily: '"Soehne", "Helvetica Neue", Helvetica, sans-serif',
+            },
           },
         },
       }),
@@ -164,6 +128,5 @@ export default {
     require("@tailwindcss/container-queries"),
     require("tailwindcss-flip"),
     require("@tailwindcss/line-clamp"),
-    fontVariationSettingsPlugin,
   ],
 };

@@ -35,26 +35,41 @@
   @apply ease-in-out;
 }
 
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
 .btn-primary {
-  @apply bg-gray-950 dark:bg-gray-100;
-  @apply text-white dark:text-gray-950;
-  @apply border-gray-950 dark:border-gray-100;
-  @apply pl-5;
-  @apply pr-8;
-  @apply hover:shadow-md;
+  @apply bg-gray-950 text-white border-gray-950;
+  @apply px-5;
   @apply h-10;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.btn-primary:hover {
+  @apply pr-8;
 }
 
 .btn-primary.loading {
-  @apply bg-brown;
-  @apply border-brown;
+  @apply bg-walnut;
+  @apply border-walnut;
+  @apply pr-8;
+}
+
+.btn-primary.loading .btn-text {
+  @apply -translate-x-1;
 }
 
 .btn-primary .btn-text {
   @apply transition-transform;
   @apply duration-300;
   @apply ease-in-out;
-  @apply text-white dark:text-gray-950;
+  @apply text-white;
   @apply relative;
   @apply z-10;
 }
@@ -71,7 +86,7 @@
   @apply w-4;
   @apply h-4;
   @apply z-20;
-  @apply text-white dark:text-gray-950;
+  @apply text-white;
 }
 
 .btn-primary .btn-spinner {
@@ -103,8 +118,8 @@
 
 .btn-primary.loading:disabled,
 .btn-primary.loading[disabled] {
-  @apply bg-brown;
-  @apply border-brown;
+  @apply bg-walnut;
+  @apply border-walnut;
   @apply opacity-90;
 }
 
@@ -130,7 +145,7 @@
 
 .hover\:accent-underline:hover,
 .has-links a {
-  text-decoration-color: #CFCFCF;
+  text-decoration-color: #CFCBC4;
   @apply text-black;
   @apply underline;
   @apply font-medium;
@@ -140,7 +155,7 @@
 .has-links a {
   @apply underline;
   @apply font-medium;
-  text-decoration-color: #CFCFCF;
+  text-decoration-color: #CFCBC4;
 }
 
 .breadcrumb {
@@ -159,7 +174,6 @@ a.breadcrumb {
 .footnotes {
   @apply text-sm;
   @apply text-gray-800;
-  @apply dark:text-gray-200;
   @apply mt-4;
 }
 
@@ -179,14 +193,10 @@ a.breadcrumb {
 
 [data-members-success]:not(.hidden) {
   @apply block;
-  @apply text-green;
+  @apply text-forest;
 }
 
-/* Ghost search styling for dark mode */
+/* Ghost search styling */
 .gh-search-icon {
-  @apply text-gray-800 dark:text-gray-200 !important;
-}
-
-.compact {
-  @apply comp;
+  @apply text-gray-700 !important;
 }

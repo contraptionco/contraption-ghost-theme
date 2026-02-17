@@ -1,68 +1,52 @@
-<header class="py-8">
+<header class="py-4 md:py-6">
   <div class="container">
     <nav class="relative z-40 flex items-center justify-between w-full">
       {{> "logo"}}
 
       {{!-- Check if hideNavAndSearch prop is not true --}}
-      <div class="flex items-center w-full justify-end space-x-2 md:space-x-8">
+      <div class="flex items-center w-full justify-end space-x-2 md:space-x-5">
         {{#unless hideNavAndSearch}}
           {{#foreach @site.navigation}}
-            <a href="{{url}}" class="inline-block px-3 py-2 text-base font-medium text-gray-800 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white">
+            <a href="{{url}}" class="inline-block px-3 py-2 font-sans text-[13px] font-semibold tracking-[0.04em] uppercase text-gray-700 hover:text-gray-900 transition-colors duration-300">
               {{label}}
             </a>
           {{/foreach}}
 
-          <button id="theme-toggle" class="inline-flex items-center justify-center p-2 rounded-md text-gray-800 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white focus:outline-none">
-            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-              <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-            </svg>
-            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
-            </svg>
-          </button>
-
           {{search}}
 
-          <div class="flex items-center space-x-2 md:space-x-3">
+          <div class="flex items-center space-x-4 md:space-x-5">
             {{#unless @member}}
+              <a href="#/portal/signin" data-portal="signin" class="inline-block px-3 py-2 font-sans text-[13px] font-medium tracking-[0.04em] uppercase text-gray-700 hover:text-gray-900 transition-colors duration-300">
+                Sign in
+              </a>
               {{#unless @site.members_invite_only}}
                 <a class="btn btn-primary" href="#/portal/signup" data-portal="signup">
                   <span class="btn-text">Join</span>
                   <span class="btn-arrow">{{> "icons/arrow-right"}}</span>
                 </a>
-              {{else}}
-                <a class="btn btn-primary" href="#/portal/signin" data-portal="signin">
-                  <span class="btn-text">Sign in</span>
-                  <span class="btn-arrow">{{> "icons/arrow-right"}}</span>
-                </a>
               {{/unless}}
             {{else}}
-              {{#unless @member.paid}}
-                <a class="btn btn-primary" href="/press/">
-                  <span class="btn-text">
-                    <span class="hidden md:inline">Print edition</span>
-                    <span class="md:hidden">Print</span>
-                  </span>
-                  <span class="btn-arrow">{{> "icons/arrow-right"}}</span>
-                </a>
-              {{/unless}}
-
               <div class="relative" data-member-menu>
-                <button type="button" class="inline-flex items-center justify-center rounded-full text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-0 focus:ring-offset-0 transition p-0" aria-expanded="false" aria-haspopup="true" aria-label="Open member menu" data-member-menu-trigger>
-                  {{> "icons/person-circle"}}
+                <button type="button" class="inline-flex items-center justify-center rounded-full text-gray-700 hover:opacity-80 focus:outline-none focus:ring-0 focus:ring-offset-0 transition-opacity duration-300 p-0" aria-expanded="false" aria-haspopup="true" aria-label="Open member menu" data-member-menu-trigger>
+                  {{#if @member.avatar_image}}
+                    <img src="{{@member.avatar_image}}" alt="{{@member.firstname}}" class="w-8 h-8 rounded-full object-cover" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <span class="w-8 h-8 rounded-full bg-gray-200 text-gray-600 items-center justify-center text-xs font-semibold uppercase" style="display:none">{{> "icons/person-circle"}}</span>
+                  {{else}}
+                    {{> "icons/person-circle"}}
+                  {{/if}}
                 </button>
-                <div class="absolute right-0 mt-3 w-56 rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-lg p-2 space-y-1 transform opacity-0 translate-y-1 scale-95 pointer-events-none transition duration-150 ease-out z-50" data-member-menu-dropdown>
+                <div class="absolute right-0 mt-3 w-56 border border-gray-200 bg-white shadow-lg overflow-hidden transform opacity-0 translate-y-1 scale-95 pointer-events-none transition duration-150 ease-out z-50" data-member-menu-dropdown>
                   {{#if @member.email}}
-                    <div class="w-full px-3 pt-2 pb-3 border-b border-gray-100 dark:border-gray-800 text-xs font-medium text-gray-600 dark:text-gray-400 compact truncate" title="{{@member.email}}">
+                    <div class="w-full px-4 pt-3 pb-3 border-b border-gray-100 text-xs font-medium text-gray-600 truncate" title="{{@member.email}}">
                       {{@member.email}}
                     </div>
                   {{/if}}
                   {{#if @member.paid}}
-                    <a href="/press/" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-800 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800">Perks</a>
-                    <a href="https://billing.stripe.com/p/login/00w4gB7P21zn0qVae19oc00" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-800 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800" data-prefill-param="prefilled_email" {{#if @member.email}}data-member-email="{{@member.email}}"{{/if}}>Billing</a>
+                    <a href="/press/" class="block px-4 py-2.5 text-sm font-medium text-gray-800 hover:bg-gray-075 transition-colors duration-200">Perks</a>
+                    <a href="https://billing.stripe.com/p/login/00w4gB7P21zn0qVae19oc00" class="block px-4 py-2.5 text-sm font-medium text-gray-800 hover:bg-gray-075 transition-colors duration-200" data-prefill-param="prefilled_email" {{#if @member.email}}data-member-email="{{@member.email}}"{{/if}}>Billing</a>
                   {{/if}}
-                  <a href="#/portal/account" data-portal="account" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-800 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800">Account</a>
-                  <a href="javascript:" data-members-signout class="block px-3 py-2 rounded-md text-sm font-medium text-gray-800 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800">Sign out</a>
+                  <a href="#/portal/account" data-portal="account" class="block px-4 py-2.5 text-sm font-medium text-gray-800 hover:bg-gray-075 transition-colors duration-200">Account</a>
+                  <a href="javascript:" data-members-signout class="block px-4 py-2.5 text-sm font-medium text-gray-800 hover:bg-gray-075 border-t border-gray-100 transition-colors duration-200">Sign out</a>
                 </div>
               </div>
             {{/unless}}

@@ -1,8 +1,12 @@
-{{!< default}} <div class="gh-viewport">
+{{!< default}} <div class="gh-viewport {{{block "viewportClass"}}}">
+
+  <a href="#gh-main" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-gray-950 focus:border focus:border-gray-300">
+    Skip to content
+  </a>
 
   {{> "nav"}}
 
-  <main class="gh-main">
+  <main id="gh-main" class="gh-main">
     {{{body}}}
     {{!-- All content gets inserted here, index.hbs, post.hbs, etc --}}
   </main>

@@ -1,35 +1,43 @@
-{{!< default}}
+{{!< app}}
 
 <div class="gh-page">
-    <div class="gh-container">
+  <div class="container py-8 md:py-12">
 
-        {{#tag}}
-        <header class="gh-page-head">
+    {{#tag}}
+    <header class="mb-12 md:mb-16">
+      <h1 class="font-sans text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-gray-950">{{name}}</h1>
+      <p class="font-serif text-lg text-gray-600 mt-4 leading-relaxed">
+        {{#if description}}
+          {{description}}
+        {{else}}
+          A collection of {{plural ../pagination.total empty='posts' singular='% post' plural='% posts'}}
+        {{/if}}
+      </p>
+      {{#if feature_image}}
+        <img class="mt-8 w-full" src="{{feature_image}}" alt="{{name}}" />
+      {{/if}}
+    </header>
+    {{/tag}}
 
-            <h1>{{name}}</h1>
-
-            <p>
-                {{#if description}}
-                    {{description}}
-                {{else}}
-                    A collection of {{plural ../pagination.total empty='posts' singular='% post' plural='% posts'}}
-                {{/if}}
-            </p>
-
-            {{#if feature_image}}
-                <img class="gh-page-image" src="{{feature_image}}" alt="{{name}}" />
-            {{/if}}
-
-        </header>
-        {{/tag}}
-
-        <div class="gh-postfeed">
+    <div class="gh-postfeed">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
         {{#foreach posts}}
-
-            {{> "card"}} {{!-- partials/card.hbs --}}
-
+          <div class="reveal">
+            {{> "card"}}
+          </div>
         {{/foreach}}
-        </div>
-
+      </div>
     </div>
+
+    {{!-- Pagination --}}
+    <div class="gh-pagination flex justify-center mt-8">
+      {{pagination}}
+    </div>
+
+    <noscript>
+      <div class="gh-pagination flex justify-center mt-8">
+        {{pagination}}
+      </div>
+    </noscript>
+  </div>
 </div>

@@ -1,59 +1,116 @@
 {{!< app}}
 <div class="gh-page">
-  {{!-- Special homepage content --}}
-  <div class="container py-8 md:py-12 lg:py-16">
-    <div class="flex flex-col mb-12 md:mb-16">
-      <div class="w-full mb-8 md:mb-0">
-        <div class="prose prose-xl dark:prose-invert">
-          <h1 class="!text-5xl lg:!text-6xl  display font-semibold">
-            Crafting digital tools
-          </h1>
-          <p class="!text-2xl lg:!text-3xl display font-medium text-pretty">
-            <a href="/projects" class="text-gray-950 dark:text-gray-050 underline decoration-green hover:decoration-green hover:text-green">Projects</a>, <a href="/workshop" class="text-gray-950 dark:text-gray-050 underline decoration-brown hover:decoration-brown hover:text-brown">workshop</a>, and <a href="/press/" class="text-gray-950 dark:text-gray-050 underline decoration-vividBlue hover:decoration-vividBlue hover:text-vividBlue">press</a> by
-            <a href="https://www.philipithomas.com/" target="_blank" rel="noopener" class="text-gray-950 dark:text-gray-050 underline decoration-blue hover:decoration-blue hover:text-blue">Philip I. Thomas</a>.
-          </p>
-          {{#unless @member}}
-          <p class="text-xl lg:text-2xl display font-medium mt-6">
-            Join {{total_members}} other subscribers:
-          </p>
-          {{/unless}}
+  {{!-- Hero masthead --}}
+  <div class="container py-10 md:py-14 lg:py-20">
+    <div class="max-w-3xl">
+      <h1 class="font-sans text-4xl sm:text-5xl lg:text-7xl font-semibold tracking-tight leading-[1.05] text-gray-950">
+        Crafting digital tools
+      </h1>
+      <p class="font-serif text-xl lg:text-2xl text-gray-700 mt-6 leading-relaxed text-pretty">
+        <a href="/projects" class="text-gray-900 underline decoration-forest hover:text-forest transition-colors duration-300">Projects</a>,
+        <a href="/workshop" class="text-gray-900 underline decoration-walnut hover:text-walnut transition-colors duration-300">workshop</a>, and
+        <a href="/press/" class="text-gray-900 underline decoration-indigo hover:text-indigo transition-colors duration-300">press</a> by
+        <a href="https://www.philipithomas.com/" target="_blank" rel="noopener" class="text-gray-900 underline decoration-gray-400 hover:text-gray-600 transition-colors duration-300">Philip I. Thomas</a>.
+      </p>
+
+      {{#unless @member}}
+        <p class="font-sans text-lg font-medium mt-8 text-gray-800">
+          Join {{total_members}} other subscribers:
+        </p>
+        <div class="mt-3">
+          <form data-members-form="subscribe" class="inline-flex flex-col items-start w-full">
+            <div class="flex items-center w-full sm:w-2/3 lg:w-1/2">
+              <input data-members-email type="email" placeholder="Enter your email"
+                aria-label="Email address"
+                class="border border-gray-300 bg-white p-2 flex-grow w-full focus:outline-none focus:ring-0 focus:border-gray-900 h-10"
+                required autofocus>
+              <button type="submit" class="btn btn-primary relative" data-loading-text="Subscribing">
+                <span class="btn-text">Subscribe</span>
+                <span class="btn-arrow">{{> "icons/arrow-right"}}</span>
+              </button>
+            </div>
+            <div class="mt-2">
+              <p data-members-error class="text-red text-xs hidden"></p>
+              <p data-members-success class="text-forest text-xs hidden">Great! Check your inbox and click the link to confirm your subscription.</p>
+            </div>
+          </form>
         </div>
+      {{/unless}}
 
-        {{#unless @member}}
-          <div class="mt-3">
-            <form data-members-form="subscribe" class="inline-flex flex-col items-start w-full">
-              <div class="flex items-center w-full md:w-2/3 lg:w-1/2">
-                <input data-members-email type="email" placeholder="Enter your email"
-                  class="border border-gray-900 dark:border-gray-100 p-2 flex-grow outline-none focus:outline-none w-full focus:ring-0 focus:border-gray-900 dark:focus:border-gray-100 h-10 dark:bg-gray-800 dark:text-gray-100"
-                  required autofocus>
-                <button type="submit" class="btn btn-primary relative" data-loading-text="Subscribing">
-                  <span class="btn-text font-bold">Subscribe</span>
-                  <span class="btn-arrow">{{> "icons/arrow-right"}}</span>
-                </button>
-              </div>
-              <div class="mt-2">
-                <p data-members-error class="text-red text-xs comp hidden"></p>
-                <p data-members-success class="text-green text-xs comp hidden">Great! Check your inbox and click the link to confirm your subscription.</p>
-              </div>
-            </form>
-          </div>
-        {{/unless}}
-      </div>
+      {{!-- Print edition CTA lives in nav for free members --}}
     </div>
+  </div>
 
-    {{!-- Recent posts --}}
+  {{!-- Essays grid --}}
+  <div class="container pb-12 md:pb-16 lg:pb-20">
     <div id="recent-posts" class="gh-postfeed">
-      <h2 class="text-2xl font-semibold mb-8 display">Featured posts</h2>
-      <div class="flex flex-wrap -mx-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
         {{#foreach posts}}
-          <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-10">
-            {{> "card"}}
-          </div>
+          {{#if @first}}
+            {{!-- Featured post: 2 cols, 2 rows on desktop --}}
+            <div class="lg:col-span-2 lg:row-span-2 reveal">
+              <a href="{{url}}" class="group flex flex-col h-full bg-offwhite-dark border border-gray-100 hover:border-gray-300 hover:shadow-sm transition-all duration-500">
+                {{#if feature_image}}
+                <div class="overflow-hidden aspect-[16/9] lg:aspect-auto lg:flex-1 lg:min-h-0">
+                  <picture class="block h-full">
+                    <source
+                      srcset="
+                      {{img_url feature_image size="s" format="avif"}} 300w,
+                      {{img_url feature_image size="m" format="avif"}} 600w,
+                      {{img_url feature_image size="l" format="avif"}} 1200w,
+                      {{img_url feature_image size="xl" format="avif"}} 2000w"
+                      sizes="(min-width: 1024px) 66vw, 100vw"
+                      type="image/avif"
+                    >
+                    <source
+                      srcset="
+                      {{img_url feature_image size="s" format="webp"}} 300w,
+                      {{img_url feature_image size="m" format="webp"}} 600w,
+                      {{img_url feature_image size="l" format="webp"}} 1200w,
+                      {{img_url feature_image size="xl" format="webp"}} 2000w"
+                      sizes="(min-width: 1024px) 66vw, 100vw"
+                      type="image/webp"
+                    >
+                    <img
+                      srcset="
+                      {{img_url feature_image size="s"}} 300w,
+                      {{img_url feature_image size="m"}} 600w,
+                      {{img_url feature_image size="l"}} 1200w,
+                      {{img_url feature_image size="xl"}} 2000w"
+                      sizes="(min-width: 1024px) 66vw, 100vw"
+                      src="{{img_url feature_image size="l"}}"
+                      alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+                      class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                    >
+                  </picture>
+                </div>
+                {{/if}}
+                <div class="p-6 md:p-8">
+                  <time datetime="{{date format="YYYY-MM-DD"}}" class="font-mono text-xs font-medium tracking-[0.12em] uppercase text-gray-500 mb-3 block">
+                    {{date format="YYYY-MM-DD"}}
+                  </time>
+                  <h2 class="font-sans text-2xl lg:text-3xl font-semibold tracking-tight text-gray-950 group-hover:text-forest transition-colors duration-500 mb-3">{{title}}</h2>
+                  {{#if custom_excerpt}}
+                    <p class="font-serif text-base lg:text-lg text-gray-600 leading-relaxed line-clamp-3">{{custom_excerpt}}</p>
+                  {{/if}}
+                  <div class="mt-4 text-forest opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 w-4 h-4">
+                    {{> "icons/arrow-right"}}
+                  </div>
+                </div>
+              </a>
+            </div>
+          {{else}}
+            <div class="reveal">
+              {{> "card"}}
+            </div>
+          {{/if}}
         {{/foreach}}
       </div>
     </div>
+  </div>
 
-    {{!-- Pagination --}}
+  {{!-- Pagination --}}
+  <div class="container py-8">
     <div class="gh-pagination flex justify-center mt-8">
       {{pagination}}
     </div>

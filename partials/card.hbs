@@ -1,7 +1,7 @@
 {{!--
 Re-usable card for linking to posts in a grid layout
 --}}
-<article class="post group flex flex-col h-full bg-white dark:bg-gray-900 shadow-sm hover:shadow-md transition-all duration-300 ease-in-out transform hover:-translate-y-1">
+<article class="post group flex flex-col h-full bg-offwhite-dark border border-gray-100 hover:border-gray-300 hover:shadow-sm transition-all duration-500 ease-in-out">
   <a class="flex flex-col h-full no-underline" href="{{url}}">
     {{#if feature_image}}
       <div class="aspect-w-16 aspect-h-9 overflow-hidden">
@@ -41,23 +41,23 @@ Re-usable card for linking to posts in a grid layout
             sizes="(min-width: 1200px) 33vw, (min-width: 768px) 50vw, 100vw"
             src="{{img_url feature_image size="m"}}"
             alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
-            class="w-full h-full object-cover"
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
             {{^if @first}}loading="lazy"{{/if}}
           >
         </picture>
       </div>
     {{else}}
-      <div class="aspect-w-16 aspect-h-9 bg-gray-075 dark:bg-gray-850"></div>
+      <div class="aspect-w-16 aspect-h-9 bg-gray-075"></div>
     {{/if}}
-    <div class="flex flex-col flex-grow p-5 border-l border-r border-b border-gray-100 dark:border-gray-800 relative">
-      <time datetime="{{date format="YYYY-MM-DD"}}" class="text-xs text-gray-600 dark:text-gray-400 font-bold comp tracking-widest mb-2">
+    <div class="flex flex-col flex-grow p-5 border-t border-gray-100 relative">
+      <time datetime="{{date format="YYYY-MM-DD"}}" class="font-mono text-xs font-medium tracking-[0.12em] uppercase text-gray-500 mb-2">
         {{date format="YYYY-MM-DD"}}
       </time>
-      <h2 class="text-xl font-semibold text-gray-950 dark:text-gray-050 mb-2">{{title}}</h2>
+      <h2 class="font-sans text-lg font-semibold text-gray-950 group-hover:text-forest transition-colors duration-500 mb-2">{{title}}</h2>
       {{#if custom_excerpt}}
-        <p class="text-gray-700 dark:text-gray-300 line-clamp-3">{{custom_excerpt}}</p>
+        <p class="font-serif text-sm text-gray-600 line-clamp-3">{{custom_excerpt}}</p>
       {{/if}}
-      <div class="absolute bottom-4 right-4 opacity-0 transform translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-in-out text-blue w-4 h-4">
+      <div class="absolute bottom-4 right-4 opacity-0 transform translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-in-out text-forest w-4 h-4">
         {{> "icons/arrow-right"}}
       </div>
     </div>

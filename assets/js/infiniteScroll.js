@@ -31,7 +31,7 @@ async function getNextPage(url) {
 export default function infiniteScroll(onAppend) {
 
     let link = document.querySelector('link[rel="next"]')?.getAttribute('href');
-    const feed = document.querySelector('.gh-postfeed .flex');
+    const feed = document.querySelector('.gh-postfeed .grid');
 
     // Bail if there's no pagination or no feed grid to append to
     if (!link || !feed) { return; }
@@ -51,49 +51,42 @@ export default function infiniteScroll(onAppend) {
     }
 
     const callback = (entries, observer) => {
-        try {
-            entries.forEach(entry => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !loading && link) {
+                loading = true;
+                observer.unobserve(entry.target);
 
-                if (entry.isIntersecting && !loading && link) {
-                    loading = true;
-                    observer.unobserve(entry.target);
+                getNextPage(link).then(({posts, nextLink}) => {
+                    posts.forEach(post => {
+                        const wrapper = document.createElement('div');
+                        wrapper.className = 'reveal';
+                        wrapper.appendChild(post);
+                        feed.appendChild(wrapper);
+                    })
 
-                    getNextPage(link).then(({posts, nextLink}) => {
-                            posts.forEach(post => {
-                                // Create a wrapper div for the post
-                                const wrapper = document.createElement('div');
-                                wrapper.className = 'w-full md:w-1/2 lg:w-1/3 px-4 mb-10';
-                                wrapper.appendChild(post);
+                    mediumZoom('.prose img, .cover', {
+                        background: '#0A0A0A',
+                        margin: 0
+                    });
 
-                                // Append the wrapped post to the feed
-                                feed.appendChild(wrapper);
-                            })
+                    if (typeof onAppend === 'function') {
+                        onAppend();
+                    }
 
-                            // Apply mediumZoom to new content
-                            mediumZoom('.prose img, .cover', {
-                                background: '#0A0A0A',
-                                margin: 0
-                            });
-
-                            // Run callback after appending new content
-                            if (typeof onAppend === 'function') {
-                                onAppend();
-                            }
-
-                            if (nextLink) {
-                                link = nextLink;
-                                watchLastPost(observer)
-                            } else {
-                                observer.disconnect()
-                            }
-                        }).catch((error) => console.log(error)).finally(() => {
-                            loading = false;
-                        })
-                }
-            })
-        } catch (error) {
-            console.log(error)
-        }
+                    if (nextLink) {
+                        link = nextLink;
+                        watchLastPost(observer)
+                    } else {
+                        observer.disconnect()
+                    }
+                }).catch(() => {
+                    link = null;
+                    observer.disconnect();
+                }).finally(() => {
+                    loading = false;
+                })
+            }
+        })
     }
 
     let observer = new IntersectionObserver(callback, options);

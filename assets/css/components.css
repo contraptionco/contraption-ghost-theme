@@ -24,7 +24,9 @@
   @apply text-sm;
   @apply font-semibold;
   @apply tracking-normal;
-  @apply focus:outline-none;
+  @apply focus-visible:ring-2;
+  @apply focus-visible:ring-gray-950;
+  @apply focus-visible:ring-offset-2;
   @apply no-underline;
   @apply border;
   @apply border-transparent;

@@ -61,45 +61,21 @@ document.addEventListener('DOMContentLoaded', function() {
       button.classList.add('loading');
       button.appendChild(spinner);
 
-      // Monitor for both success message and XHR response
+      // Monitor for success/error messages from Ghost's form handler
       const checkForSuccess = setInterval(function() {
         const success = subscribeForm.querySelector('[data-members-success]');
         const error = subscribeForm.querySelector('[data-members-error]');
 
-        // Check for success message
         if (success && !success.classList.contains('hidden')) {
           clearInterval(checkForSuccess);
           redirectToCheckEmail();
         }
 
-        // Check for error
         if (error && !error.classList.contains('hidden')) {
           clearInterval(checkForSuccess);
           handleError();
         }
       }, 100);
-
-      // Listen for the fetch/XHR request that Ghost makes
-      const originalFetch = window.fetch;
-      window.fetch = async function(...args) {
-        const response = await originalFetch(...args);
-
-        // Clone the response so we can check its status
-        const clone = response.clone();
-
-        // Check if this is the members API request
-        if (args[0].includes('/api/members/send-magic-link') ||
-            args[0].includes('/members/api/send-magic-link')) {
-
-          // Check for 201 status (Created - success for magic link)
-          if (clone.status === 201) {
-            clearInterval(checkForSuccess);
-            setTimeout(redirectToCheckEmail, 500);
-          }
-        }
-
-        return response;
-      };
 
       function redirectToCheckEmail() {
         window.location.href = '/check-email/';

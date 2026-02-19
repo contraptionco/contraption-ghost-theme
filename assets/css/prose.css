@@ -4,7 +4,7 @@
   @apply lg:text-3xl;
   @apply font-semibold;
   @apply tracking-tight;
-  font-family: 'Soehne', 'Helvetica Neue', Helvetica, sans-serif;
+  font-family: 'Sohne', 'Helvetica Neue', Helvetica, sans-serif;
   letter-spacing: -0.02em;
 }
 
@@ -15,7 +15,7 @@
 .prose h6 {
   @apply font-semibold;
   @apply lg:text-2xl;
-  font-family: 'Soehne', 'Helvetica Neue', Helvetica, sans-serif;
+  font-family: 'Sohne', 'Helvetica Neue', Helvetica, sans-serif;
   letter-spacing: -0.02em;
 }
 

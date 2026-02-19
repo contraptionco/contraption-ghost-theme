@@ -60,7 +60,7 @@ export default {
     extend: {
       fontFamily: {
         sans: [
-          '"Soehne"',
+          '"Sohne"',
           '"Helvetica Neue"',
           "Helvetica",
           ...defaultTheme.fontFamily.sans,
@@ -71,7 +71,7 @@ export default {
           ...defaultTheme.fontFamily.serif,
         ],
         mono: [
-          '"Soehne Mono"',
+          '"Sohne Mono"',
           '"Roboto Mono"',
           ...defaultTheme.fontFamily.mono,
         ],
@@ -97,26 +97,26 @@ export default {
               content: '""',
             },
             h1: {
-              fontFamily: '"Soehne", "Helvetica Neue", Helvetica, sans-serif',
+              fontFamily: '"Sohne", "Helvetica Neue", Helvetica, sans-serif',
               letterSpacing: "-0.02em",
             },
             h2: {
-              fontFamily: '"Soehne", "Helvetica Neue", Helvetica, sans-serif',
+              fontFamily: '"Sohne", "Helvetica Neue", Helvetica, sans-serif',
               letterSpacing: "-0.02em",
             },
             h3: {
-              fontFamily: '"Soehne", "Helvetica Neue", Helvetica, sans-serif',
+              fontFamily: '"Sohne", "Helvetica Neue", Helvetica, sans-serif',
               letterSpacing: "-0.02em",
             },
             h4: {
-              fontFamily: '"Soehne", "Helvetica Neue", Helvetica, sans-serif',
+              fontFamily: '"Sohne", "Helvetica Neue", Helvetica, sans-serif',
               letterSpacing: "-0.02em",
             },
             h5: {
-              fontFamily: '"Soehne", "Helvetica Neue", Helvetica, sans-serif',
+              fontFamily: '"Sohne", "Helvetica Neue", Helvetica, sans-serif',
             },
             h6: {
-              fontFamily: '"Soehne", "Helvetica Neue", Helvetica, sans-serif',
+              fontFamily: '"Sohne", "Helvetica Neue", Helvetica, sans-serif',
             },
           },
         },

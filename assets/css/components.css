@@ -125,6 +125,52 @@
   @apply opacity-90;
 }
 
+.btn-indigo {
+  @apply bg-indigo text-white border-indigo;
+  @apply px-5;
+  @apply h-10;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.btn-indigo:hover {
+  @apply pr-8;
+  @apply bg-indigo-dark;
+  @apply border-indigo-dark;
+}
+
+.btn-indigo .btn-text {
+  @apply transition-transform;
+  @apply duration-300;
+  @apply ease-in-out;
+  @apply text-white;
+  @apply relative;
+  @apply z-10;
+}
+
+.btn-indigo .btn-arrow {
+  @apply absolute;
+  @apply right-4;
+  @apply opacity-0;
+  @apply transform;
+  @apply translate-x-2;
+  @apply transition-all;
+  @apply duration-300;
+  @apply ease-in-out;
+  @apply w-4;
+  @apply h-4;
+  @apply z-20;
+  @apply text-white;
+}
+
+.btn-indigo:hover .btn-arrow {
+  @apply opacity-100;
+  @apply translate-x-0;
+}
+
+.btn-indigo:hover .btn-text {
+  @apply -translate-x-1;
+}
+
 .btn-secondary {
   @apply bg-gray-100;
   @apply border-gray-100;

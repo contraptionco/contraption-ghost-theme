@@ -36,7 +36,7 @@
               </div>
 
               <div class="flex flex-wrap gap-3">
-                <a href="https://billing.stripe.com/p/login/00w4gB7P21zn0qVae19oc00" class="btn btn-primary" data-prefill-param="prefilled_email" {{#if @member.email}}data-member-email="{{@member.email}}"{{/if}}>
+                <a href="https://billing.stripe.com/p/login/00w4gB7P21zn0qVae19oc00" class="btn btn-indigo" data-prefill-param="prefilled_email" {{#if @member.email}}data-member-email="{{@member.email}}"{{/if}}>
                   <span class="btn-text">Billing &amp; shipping</span>
                   <span class="btn-arrow">{{> "icons/arrow-right"}}</span>
                 </a>
@@ -49,11 +49,11 @@
 
           <div class="mt-8 space-y-6">
               <div class="grid gap-3 sm:flex sm:flex-wrap">
-                <a href="https://buy.stripe.com/00w4gB7P21zn0qVae19oc00" class="btn btn-primary w-full sm:w-auto" data-prefill-param="locked_prefilled_email" {{#if @member}}data-member-email="{{@member.email}}"{{/if}}>
+                <a href="https://buy.stripe.com/00w4gB7P21zn0qVae19oc00" class="btn btn-indigo w-full sm:w-auto" data-prefill-param="locked_prefilled_email" {{#if @member}}data-member-email="{{@member.email}}"{{/if}}>
                   <span class="btn-text">$15/mo USA delivery</span>
                   <span class="btn-arrow">{{> "icons/arrow-right"}}</span>
                 </a>
-                <a href="https://buy.stripe.com/8x26oJedqb9X6Pjfyl9oc01" class="btn btn-primary w-full sm:w-auto" data-prefill-param="locked_prefilled_email" {{#if @member}}data-member-email="{{@member.email}}"{{/if}}>
+                <a href="https://buy.stripe.com/8x26oJedqb9X6Pjfyl9oc01" class="btn btn-indigo w-full sm:w-auto" data-prefill-param="locked_prefilled_email" {{#if @member}}data-member-email="{{@member.email}}"{{/if}}>
                   <span class="btn-text">$20/mo global</span>
                   <span class="btn-arrow">{{> "icons/arrow-right"}}</span>
                 </a>

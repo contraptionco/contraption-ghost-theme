@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Soehne';
-  src: url('https://fonts.contraption.co/Sohne/sohne-buch.woff2')
+  src: url('https://fonts.contraption.co/klim/soehne-buch.woff2')
     format('woff2');
   font-weight: 400;
   font-style: normal;
@@ -9,7 +9,7 @@
 
 @font-face {
   font-family: 'Soehne';
-  src: url('https://fonts.contraption.co/Sohne/sohne-buch-kursiv.woff2')
+  src: url('https://fonts.contraption.co/klim/soehne-buch-kursiv.woff2')
     format('woff2');
   font-weight: 400;
   font-style: italic;
@@ -18,7 +18,7 @@
 
 @font-face {
   font-family: 'Soehne';
-  src: url('https://fonts.contraption.co/Sohne/sohne-halbfett.woff2')
+  src: url('https://fonts.contraption.co/klim/soehne-halbfett.woff2')
     format('woff2');
   font-weight: 600;
   font-style: normal;
@@ -27,7 +27,7 @@
 
 @font-face {
   font-family: 'Soehne';
-  src: url('https://fonts.contraption.co/Sohne/sohne-halbfett-kursiv.woff2')
+  src: url('https://fonts.contraption.co/klim/soehne-halbfett-kursiv.woff2')
     format('woff2');
   font-weight: 600;
   font-style: italic;

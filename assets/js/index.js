@@ -40,57 +40,47 @@ document.addEventListener('DOMContentLoaded', function() {
   // Set up scroll reveal
   setupScrollReveal();
 
-  // Handle subscription form
-  const subscribeForm = document.querySelector('form[data-members-form="subscribe"]');
-  if (subscribeForm) {
-    subscribeForm.addEventListener('submit', function(event) {
-      const button = subscribeForm.querySelector('button[type="submit"]');
-      const buttonText = button.querySelector('.btn-text');
-      const buttonArrow = button.querySelector('.btn-arrow');
-      const originalText = buttonText.textContent;
+  // Handle subscription forms (Ghost Portal adds 'success'/'error' classes to the form)
+  document.querySelectorAll('form[data-members-form="subscribe"]').forEach(function(form) {
+    var button = form.querySelector('button[type="submit"]');
+    var buttonText = button.querySelector('.btn-text');
+    var buttonArrow = button.querySelector('.btn-arrow');
+    var originalText = button.textContent.trim();
 
-      // Create spinner element
-      const spinner = document.createElement('span');
-      spinner.classList.add('btn-spinner');
-      spinner.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="animate-spin w-5 h-5"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>';
-
-      // Show loading state
-      buttonText.textContent = 'Subscribing';
+    form.addEventListener('submit', function() {
       button.disabled = true;
-      buttonArrow.style.display = 'none';
-      button.classList.add('loading');
-      button.appendChild(spinner);
+      if (buttonText) {
+        originalText = buttonText.textContent;
+        buttonText.textContent = 'Subscribing';
+      } else {
+        originalText = button.textContent.trim();
+        button.textContent = 'Subscribing…';
+      }
+      if (buttonArrow) buttonArrow.style.display = 'none';
+    });
 
-      // Monitor for success/error messages from Ghost's form handler
-      const checkForSuccess = setInterval(function() {
-        const success = subscribeForm.querySelector('[data-members-success]');
-        const error = subscribeForm.querySelector('[data-members-error]');
-
-        if (success && !success.classList.contains('hidden')) {
-          clearInterval(checkForSuccess);
-          redirectToCheckEmail();
-        }
-
-        if (error && !error.classList.contains('hidden')) {
-          clearInterval(checkForSuccess);
-          handleError();
-        }
-      }, 100);
-
-      function redirectToCheckEmail() {
+    // Watch for Portal's success/error classes on the form
+    var observer = new MutationObserver(function() {
+      if (form.classList.contains('success')) {
+        observer.disconnect();
         window.location.href = '/check-email/';
       }
-
-      function handleError() {
+      if (form.classList.contains('error')) {
+        observer.disconnect();
         button.disabled = false;
-        buttonText.textContent = originalText;
-        buttonArrow.style.display = '';
-        button.classList.remove('loading');
-        const spinnerElement = button.querySelector('.btn-spinner');
-        if (spinnerElement) spinnerElement.remove();
+        if (buttonText) {
+          buttonText.textContent = originalText;
+        } else {
+          button.textContent = originalText;
+        }
+        if (buttonArrow) buttonArrow.style.display = '';
+        // Portal already writes the error message into [data-members-error]
+        var errorEl = form.querySelector('[data-members-error]');
+        if (errorEl) errorEl.classList.remove('hidden');
       }
     });
-  }
+    observer.observe(form, { attributes: true, attributeFilter: ['class'] });
+  });
 });
 
 // Call the menu and infinite scroll functions

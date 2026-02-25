@@ -32,7 +32,7 @@
                     <img src="{{@member.avatar_image}}" alt="{{@member.firstname}}" class="w-8 h-8 rounded-full object-cover" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
                     <span class="w-8 h-8 rounded-full bg-gray-200 text-gray-600 items-center justify-center text-xs font-semibold uppercase" style="display:none">{{> "icons/person-circle"}}</span>
                   {{else}}
-                    {{> "icons/person-circle"}}
+                    <span class="w-8 h-8 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center">{{> "icons/person-circle"}}</span>
                   {{/if}}
                 </button>
                 <div class="absolute right-0 mt-3 w-56 border border-gray-200 bg-white shadow-lg overflow-hidden transform opacity-0 translate-y-1 scale-95 pointer-events-none transition duration-150 ease-out z-50" data-member-menu-dropdown>

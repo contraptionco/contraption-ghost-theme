@@ -48,7 +48,7 @@ Re-usable card for linking to posts
 
   {{#if feature_image}}
   <div class="container pt-12">
-    <div class="w-full overflow-hidden" style="aspect-ratio: 3/2;">
+    <div class="w-full overflow-hidden">
       <picture class="w-full">
         <source srcset="
                     {{img_url feature_image size="xxs" format="avif"}} 30w, {{img_url feature_image size="xs"
@@ -67,7 +67,7 @@ Re-usable card for linking to posts
           feature_image size="s"}} 300w, {{img_url feature_image size="m"}} 600w, {{img_url feature_image size="l"}}
           1200w, {{img_url feature_image size="xl"}} 2000w" {{^if @first}}sizes="(min-width: 1200px) 1200px, 100vw)"
           {{else}}sizes="(min-width: 800px) 100vw, 700px" {{/if}} src="{{img_url feature_image size="m"}}"
-          alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}" class="cover w-full h-full object-cover" {{^if
+          alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}" class="cover w-full" {{^if
           @first}}loading="lazy" {{/if}}>
       </picture>
     </div>
